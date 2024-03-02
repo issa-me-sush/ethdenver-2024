@@ -333,7 +333,8 @@ const Home: NextPage = () => {
 
       const decodedString = parseAttestation(attestationData.data)
       console.log(decodedString)
-
+      setAttData(JSON.stringify(decodedString));
+      try {
       const erc725js = new ERC725(lsp3ProfileSchema, `0xC88445E297B138ebF4AaAeD136c4D4Eb70df733f`, 'https://rpc.testnet.lukso.gateway.fm',
         {
           ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
@@ -342,9 +343,9 @@ const Home: NextPage = () => {
       const profileData = await erc725js.getData();
       console.log(profileData);
 
-      setAttData(JSON.stringify(decodedString));
 
-      try {
+
+    
         // Find the LSP3Profile entry and extract the IPFS URL
         const lsp3ProfileEntry = profileData.find(entry => entry.name === "LSP3Profile");
            // @ts-ignore 
