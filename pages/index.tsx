@@ -21,6 +21,7 @@ const Home: NextPage = () => {
   const [attData,setAttData] = useState('')
   const [luksoExplorer, setLuksoExplorer] = useState('');
   const [veraxSdk, setVeraxSdk] = useState(null);
+  const transactionReceipt = useTransactionReceipt();
   const {address , isConnected}  = useAccount()
   useEffect(() => {
     const initVeraxSdk = async () => {
@@ -35,6 +36,8 @@ const Home: NextPage = () => {
 // @ts-ignore 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const  provider = new ethers.providers.Web3Provider(window.ethereum);
+    await window.ethereum.request({ method: 'eth_requestAccounts' });
     if (!veraxSdk) {
       console.error('Verax SDK not initialized');
       return;
@@ -48,9 +51,10 @@ const Home: NextPage = () => {
       "https://socialattest.vercel.app",
       SCHEMA
     );
-    const receipt = await useTransactionReceipt({
-      hash: schemahash,
-  });
+  //   const receipt = await useTransactionReceipt({
+  //     hash: schemahash,
+  // });
+  const receipt = await provider.waitForTransaction(schemahash)
       // @ts-ignore 
   const schemaId = receipt.logs[0].topics[1];
     console.log(schemaId)
@@ -63,9 +67,10 @@ const Home: NextPage = () => {
       "SocialAttest"
 
     );
-    const receiptp = await useTransactionReceipt({
-      hash: portalhash,
-  });
+  //   const receiptp = await useTransactionReceipt({
+  //     hash: portalhash,
+  // });
+  const receiptp = await provider.waitForTransaction(portalhash)
       // @ts-ignore 
   const portalId= receiptp.logs[0].topics[1];
     console.log(portalId)
@@ -102,11 +107,6 @@ const txHash = await veraxSdk.portal.attest(
      const  provider = new ethers.providers.Web3Provider(window.ethereum);
       await window.ethereum.request({ method: 'eth_requestAccounts' });
       const signer = provider.getSigner();
-     
-  
-    
-  
-
     const contractAddress = '0xD6302d3bDDb59Da0217B4A04778d3642A379dA0E';
     const contractABI = EAS_ABI
   
