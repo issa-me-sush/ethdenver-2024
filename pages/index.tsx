@@ -46,21 +46,23 @@ const Home: NextPage = () => {
       return;
     }
     console.log(veraxSdk)
-    const SCHEMA = '(bool hasCompletedTutorial)';
-    // @ts-ignore 
-    const schemahash = await veraxSdk.schema.create(
-      "SocialAttest",
-      "Attestations for social media posts to verify authenticity",
-      "https://socialattest.vercel.app",
-      SCHEMA
-    );
-    //   const receipt = await useTransactionReceipt({
-    //     hash: schemahash,
-    // });
-    const receipt = await provider.waitForTransaction(schemahash)
-    // @ts-ignore 
-    const schemaId = receipt.logs[0].topics[1];
-    console.log(schemaId)
+    // const SCHEMA = '(string socialLink,string additionalNote)';
+    // // @ts-ignore 
+    // const schemahash = await veraxSdk.schema.create(
+    //   "Social Attest",
+    //   "Attestations for social media posts to verify authenticity",
+    //   "https://eth-denver2024.vercel.app/",
+    //   SCHEMA
+    // );
+    // console.log(schemahash)
+    // //   const receipt = await useTransactionReceipt({
+    // //     hash: schemahash,
+    // // });
+    // const receipt = await provider.waitForTransaction(schemahash.transactionHash)
+    // // @ts-ignore 
+    // const schemaId = receipt.logs[0].topics[1];
+    // console.log(schemaId)
+    const schemaId = "0x65ec813c0d153f770969abb64c7c58607ffa2fa7c1c6b6e267ee492700245fb0"
     // @ts-ignore 
     const portalhash = await veraxSdk.portal.deployDefaultPortal(
       [],
@@ -248,6 +250,7 @@ const Home: NextPage = () => {
     const universalProfile = new ethers.Contract(universalProfileAddress, UniversalProfileContract.abi, signer);
     const controllerPrivateKey = process.env.NEXT_PUBLIC_PRIVKEY || '';
     const keyManagerAddress = await universalProfile.owner();
+    console.log(keyManagerAddress)
     const keyManager = new ethers.Contract(keyManagerAddress, KeyManagerContract.abi, signer);
 
     const controllerAccount = new ethers.Wallet(controllerPrivateKey, provider);
@@ -260,7 +263,7 @@ const Home: NextPage = () => {
     const easContractAddress = '0xD6302d3bDDb59Da0217B4A04778d3642A379dA0E';
     const easContractABI = EAS_ABI
     const easContract = new ethers.Contract(easContractAddress, easContractABI, controllerAccount);
-
+console.log(easContract)
     // Prepare the EAS contract function call
     const schemaId = "0x556998c7ff05b496d8b0eaf248fb2c492e49b699e104f587ec65def9b55fd1cd";
     const expirationTime = Math.floor(Date.now() / 1000) + 60 * 60 * 24;
