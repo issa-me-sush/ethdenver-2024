@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@erc725/erc725.js": "^0.23.1",
     "@lukso/eip191-signer.js": "^0.2.2",
     "@lukso/lsp-smart-contracts": "^0.14.0",
     "@rainbow-me/rainbowkit": "^2.0.1",

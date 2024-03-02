@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@erc725/erc725.js':
+    specifier: ^0.23.1
+    version: 0.23.1
   '@lukso/eip191-signer.js':
     specifier: ^0.2.2
     version: 0.2.2
@@ -1847,6 +1850,18 @@ packages:
       hash-it: 6.0.0
       lru-cache: 6.0.0
       tslib: 2.6.2
+    dev: false
+
+  /@erc725/erc725.js@0.23.1:
+    resolution: {integrity: sha512-GJNy4K3utdyd8eSSh15zrH9kbir6YcchiksJER4yMaUbfDRBzMWRn/mQ/ndHM+An+tnnCEmLhtu6/OK0vDNdiQ==}
+    dependencies:
+      add: 2.0.6
+      ethereumjs-util: 7.1.5
+      web3-eth-abi: 1.10.0
+      web3-providers-http: 1.10.0
+      web3-utils: 1.10.4
+    transitivePeerDependencies:
+      - encoding
     dev: false
 
   /@erc725/smart-contracts@7.0.0(@babel/core@7.24.0):
@@ -6234,6 +6249,10 @@ packages:
     resolution: {integrity: sha512-Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+
+  /add@2.0.6:
+    resolution: {integrity: sha512-j5QzrmsokwWWp6kUcJQySpbG+xfOBqqKnup3OIk1pz+kB/80SLorZ9V8zHFLO92Lcd+hbvq8bT+zOGoPkmBV0Q==}
+    dev: false
 
   /aes-js@3.0.0:
     resolution: {integrity: sha512-H7wUZRn8WpTq9jocdxQ2c8x2sKo9ZVmzfRE13GiNJXfp7NcKYEdvl3vspKjXox6RIG2VtaRe4JFvxG4rqp2Zuw==}
