@@ -20,6 +20,7 @@ const Home: NextPage = () => {
   const [additionalNotes, setAdditionalNotes] = useState('');
   const [attUid, setAttUid] = useState('');
   const [uid, setUid] = useState('')
+  const [luksoName,setLuksoName] = useState('')
   const [attData, setAttData] = useState('')
   const [luksoExplorer, setLuksoExplorer] = useState('');
   const [veraxSdk, setVeraxSdk] = useState(null);
@@ -329,11 +330,50 @@ const encodedData = ethers.utils.toUtf8Bytes(concatenatedData);
       console.log(attestationData)
 
 
-
+      
       const decodedString = parseAttestation(attestationData.data)
       console.log(decodedString)
+      
+const erc725js = new ERC725(lsp3ProfileSchema, `0xC88445E297B138ebF4AaAeD136c4D4Eb70df733f`, 'https://rpc.testnet.lukso.gateway.fm',
+{
+  ipfsGateway: 'https://api.universalprofile.cloud/ipfs',
+},
+);
+const profileData = await erc725js.getData();
+console.log(profileData);
 
       setAttData(JSON.stringify(decodedString));
+
+      try {
+        // Find the LSP3Profile entry and extract the IPFS URL
+        const lsp3ProfileEntry = profileData.find(entry => entry.name === "LSP3Profile");
+        if (!lsp3ProfileEntry || !lsp3ProfileEntry.value || !lsp3ProfileEntry.value.url) {
+          throw new Error("LSP3Profile entry or IPFS URL not found");
+        }
+        const ipfsUrl = lsp3ProfileEntry.value.url.replace("ipfs://", "https://ipfs.io/ipfs/"); // Convert IPFS URL to a gateway URL
+    
+        // Fetch the profile data from IPFS
+        const response = await fetch(ipfsUrl);
+        if (!response.ok) {
+          throw new Error("Failed to fetch profile data from IPFS");
+        }
+        const profileJson = await response.json();
+    
+        // Extract the name
+        const name = profileJson.LSP3Profile.name;
+        if (!name) {
+          throw new Error("Name field not found in LSP3Profile data");
+        }
+    
+    setLuksoName(name)
+    
+        console.log("Extracted name:", name);
+        return name; // Return the name if needed
+      } catch (error) {
+        console.error("Error extracting name from LSP3Profile:", error);
+        return null; // Return null or handle the error as needed
+      }
+
     } catch (error) {
       console.error('Error fetching attestation:', error);
       setAttData('Error fetching attestation');
@@ -413,7 +453,7 @@ const encodedData = ethers.utils.toUtf8Bytes(concatenatedData);
         </button>
       </div>
 
-      {attData && <div className="mt-6 text-gray-700">{attData}</div>}
+      {attData && <div className="mt-6 text-gray-700">attestation : {attData} by  lukso user - {luksoName}</div>}
     </div>
 
   );
