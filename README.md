@@ -1,29 +1,19 @@
-This is a [RainbowKit](https://rainbowkit.com) + [wagmi](https://wagmi.sh) + [Next.js](https://nextjs.org/) project bootstrapped with [`create-rainbowkit`](https://github.com/rainbow-me/rainbowkit/tree/main/packages/create-rainbowkit).
+# Social Attest
 
-## Getting Started
+## Easily Attest your social media posts so anyone can verify its a post by a legit entity on chain
 
-First, run the development server:
+### solves the issues surrounding scamsters trying to imitate legit accounts of influencers or startups even if they have a check mark , very small changes that arent generally noticeable leads to people falling for scams, and also mainly in an event of a hack, the hacker wont be able to provide an official attestation of the post, hence alerting the users that the account has been compromised
 
-```bash
-npm run dev
-```
+LUKSO ATTESTION CONTRACTS
+   
+   Schema registry  contract - 0xBc2e25EE5380242A9af2a31b64a08ad2bcB300aC
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   Attestation contract - 0xD6302d3bDDb59Da0217B4A04778d3642A379dA0E
+   
+   Schema created trx - https://explorer.execution.testnet.lukso.network/tx/0x263992fd6ff0fa78ef10e3a118d0ceb35ec426d70e63542254002bb1cb81bbdd?tab=logs
+    
+   Attestation done - https://explorer.execution.testnet.lukso.network/tx/0x7492c233badc753c751395902543670be0f50acab6a73ea1f58fafc20fd64439?tab=logs
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Verax attestations  need whitelisting of account else throws an error
 
-## Learn More
-
-To learn more about this stack, take a look at the following resources:
-
-- [RainbowKit Documentation](https://rainbowkit.com) - Learn how to customize your wallet connection flow.
-- [wagmi Documentation](https://wagmi.sh) - Learn how to interact with Ethereum.
-- [Next.js Documentation](https://nextjs.org/docs) - Learn how to build a Next.js application.
-
-You can check out [the RainbowKit GitHub repository](https://github.com/rainbow-me/rainbowkit) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+live url - https://eth-denver2024.vercel.app/
